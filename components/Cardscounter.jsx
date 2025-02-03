@@ -36,7 +36,10 @@ const Cardscounter = () => {
                                 translateZ="60"
                                 className="text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300"
                             >
-                                Hover over this card to unleash the power of CSS perspective
+                                <h1 className="text-black">
+                                Click Me !
+
+                                </h1>
                             </CardItem>
                             <CardItem translateZ="100" className=" mt-4">
                                 <img
@@ -67,7 +70,10 @@ const Cardscounter = () => {
                                 translateZ="60"
                                 className="text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300"
                             >
-                                Hover over this card to unleash the power of CSS perspective
+                               <h1 className="text-white">
+                                Click Me !
+
+                                </h1>
                             </CardItem>
                             <CardItem translateZ="100" className=" mt-4">
                                 <img
@@ -96,7 +102,10 @@ const Cardscounter = () => {
                                 translateZ="60"
                                 className="text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300"
                             >
-                                Hover over this card to unleash the power of CSS perspective
+                              <h1 className="text-black">
+                                Click Me !
+
+                                </h1>
                             </CardItem>
                             <CardItem translateZ="100" className=" mt-4">
                                 <img
