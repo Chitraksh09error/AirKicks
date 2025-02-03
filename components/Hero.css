@@ -1,0 +1,23 @@
+@keyframes moveUpDown {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  .shabox {
+    animation: moveUpDown 4s ease-in-out infinite;
+    transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+    filter: drop-shadow(5px 5px 10px #555); /* Default shadow */
+  }
+  
+  .shabox:hover {
+    transform: translateY(-20px) translateX(15px) scale(1.1); /* Move up, to the right, and grow slightly */
+    filter: drop-shadow(0 0 15px red); /* Red neon glow on hover */
+  }
+  
