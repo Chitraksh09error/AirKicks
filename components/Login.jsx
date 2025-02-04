@@ -34,6 +34,7 @@ const Login = () => {
                 email: email,
                 password: password,
                 options: {
+                  emailRedirectTo: 'https://air-kicks.vercel.app/login',
                     data: {
                         name: name,
                     }
