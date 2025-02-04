@@ -30,43 +30,47 @@ const Login = () => {
         let data, error;
 
         if (state === 'signup') {
-            ({ data, error } = await supabase.auth.signUp(
-                {
-                    email: email,
-                    password: password,
-                    options: {
-                        data: {
-                            name: name,
-                        }
+            ({ data, error } = await supabase.auth.signUp({
+                email: email,
+                password: password,
+                options: {
+                    data: {
+                        name: name,
                     }
                 }
-            ));
+            }));
+
+            if (error) {
+                alert('Signup failed: ' + error.message);
+                return;
+            }
+
+            if (data?.user) {
+                alert("Signup successful! Please check your email to verify your account and Please go to Login Page");
+                setEmail('') ;
+                setName('');
+                setPassword('');            
+                   return;
+            }
         } else {
             ({ data, error } = await supabase.auth.signInWithPassword({ email, password }));
-        }
 
-        if (error) {
-            alert('Authentication failed: ' + error.message);
-            return;
-        }
+            if (error) {
+                alert('Authentication failed: ' + error.message);
+                return;
+            }
 
-        // Wait for session data (indicating successful authentication)
-        if (data?.session) {
-            setState('login');
-            router.push('/landingpage');
-        } else {
-            alert('Invalid email or password');
+            if (data?.session) {
+                setState('login');
+                router.push('/landingpage');
+            } else {
+                alert('Invalid email or password');
+            }
         }
-
     } catch (error) {
         alert('Error: ' + error.message);
     }
 };
-  const passShowHandler = () => {
-    setType(passShow ? 'password' : 'text');
-    setPassShow(!passShow);
-  };
-
   return (
     <div className='h-screen bg-no-repeat lg:bg-[length:500px_400px] lg:bg-right-bottom bg-bottom bg-[length:400px_300px] bg-[#ffffff] flex items-center justify-center px-6'>
       <div className='bg-gray-100 z-50 p-10 flex flex-col items-center rounded-xl shadow-xl w-full sm:w-96'>
