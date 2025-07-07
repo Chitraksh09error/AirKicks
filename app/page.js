@@ -14,6 +14,7 @@ export default function Home() {
        <div className="lg:mx-52 mx-1">
        <Hero/>
        <Bar/>
+       
        </div>
     </main>
   );

@@ -2,6 +2,41 @@
 import Link from 'next/link';
 import React from 'react';
 import { ChevronDown } from 'lucide-react';
+import {
+  AnimatedSpan,
+  Terminal,
+  TypingAnimation,
+} from "@/components/magicui/terminal";
+import { AvatarCircles } from "@/components/magicui/avatar-circles";
+import { BoxReveal } from "@/components/magicui/box-reveal";
+
+const avatars = [ 
+  {
+    imageUrl: "https://avatars.githubusercontent.com/u/16860528",
+    profileUrl: "https://github.com/dillionverma",
+  },
+  {
+    imageUrl: "https://avatars.githubusercontent.com/u/20110627",
+    profileUrl: "https://github.com/tomonarifeehan",
+  },
+  {
+    imageUrl: "https://avatars.githubusercontent.com/u/106103625",
+    profileUrl: "https://github.com/BankkRoll",
+  },
+  {
+    imageUrl: "https://avatars.githubusercontent.com/u/59228569",
+    profileUrl: "https://github.com/safethecode",
+  },
+  {
+    imageUrl: "https://avatars.githubusercontent.com/u/59442788",
+    profileUrl: "https://github.com/sanjay-mali",
+  },
+  {
+    imageUrl: "https://avatars.githubusercontent.com/u/89768406",
+    profileUrl: "https://github.com/itsarghyadas",
+  },
+];
+
 
 const Bar = () => {
   return (
@@ -16,17 +51,21 @@ const Bar = () => {
       </button> */}
       <div className="w-full mt-3 h-1 bg-black"></div>
 
-      <p className="text-gray-700 mt-2  flex font-bold items-center gap-2">
+      <h1  className="text-gray-700 mt-2  flex font-bold items-center gap-2">
         <Link href="/login" className="text-blue-400 underline hover:text-xl transition ease-in-out duration-500">
           Login
         </Link>
 
 
-        <h1>
+        <p>
           to scroll down
-        </h1>
+        </p>
         <ChevronDown className="w-5 h-5 animate-bounce" />
-      </p>
+      </h1>
+        
+      
+
+
     </div>
   );
 };
