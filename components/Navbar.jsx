@@ -1,45 +1,17 @@
 'use client';
-import { useEffect, useState } from 'react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { useState } from 'react';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { ShinyButton } from "@/components/ui/shiny-button.jsx";
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { supabase } from '../utils/client'
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true); // Add loading state
   const router = useRouter();
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      const { data, error } = await supabase.auth.getSession();
-      if (error) console.error("Session error:", error);
-      setUser(data?.session?.user || null);
-      setLoading(false); // Set loading to false once the user data is fetched
-    };
-
-    fetchUser();
-
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user || null);
-      setLoading(false); // Set loading to false when the auth state changes
-    });
-
-    return () => {
-      subscription?.unsubscribe();
-    };
-  }, []);
-
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
-    setUser(null);
-    window.history.pushState(null, "", "/");
-    router.push('/');
+  const handleLogout = () => {
+    router.push('/login');
   };
-
-  if (loading) return <div>Loading...</div>; // You can show a loading spinner or text here
 
   return (
     <header className="bg-black mt-2 lg:px-8 px-4 lg:mx-52 md:mx-10 mx-2 rounded-2xl">
@@ -47,11 +19,7 @@ export default function Navbar() {
         <div className="flex lg:flex-1">
           <a href="#" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
-            <img
-              alt=""
-              src="/assets/airkicks.png"
-              className="h-6 w-auto"
-            />
+            <img alt="" src="/assets/airkicks.png" className="h-6 w-auto" />
           </a>
         </div>
         <div className="flex lg:hidden">
@@ -76,26 +44,16 @@ export default function Navbar() {
           </a>
         </div>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          {user ? (
-            <ShinyButton onClick={handleLogout} className="text-black bg-white px-4 py-2 rounded-full">
-              Logout
-            </ShinyButton>
-          ) : (
-            <Link href="/login">
-              <ShinyButton className="text-black bg-white">Login</ShinyButton>
-            </Link>
-          )}
+          <ShinyButton onClick={handleLogout} className="text-black bg-white px-4 py-2 rounded-full">
+            Login
+          </ShinyButton>
         </div>
       </nav>
       <div className={`fixed inset-0 z-50 bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-white ${mobileMenuOpen ? '' : 'hidden'}`}>
         <div className="flex items-center justify-between">
           <a href="#" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
-            <img
-              alt=""
-              src="/assets/airkicksb.png"
-              className="h-6 w-auto"
-            />
+            <img alt="" src="/assets/airkicksb.png" className="h-6 w-auto" />
           </a>
           <button
             type="button"
@@ -120,15 +78,9 @@ export default function Navbar() {
               </a>
             </div>
             <div className="py-6">
-              {user ? (
-                <ShinyButton onClick={handleLogout} className="text-black bg-white px-4 py-2 rounded-full">
-                  Logout
-                </ShinyButton>
-              ) : (
-                <Link href="/login">
-                  <ShinyButton className="text-black bg-white">Login</ShinyButton>
-                </Link>
-              )}
+              <ShinyButton onClick={handleLogout} className="text-black bg-white px-4 py-2 rounded-full">
+                Logout
+              </ShinyButton>
             </div>
           </div>
         </div>
